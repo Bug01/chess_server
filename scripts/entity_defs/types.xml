@@ -1,0 +1,31 @@
+<root>
+	<DBID>          	UINT32          </DBID>
+	<SERVER_ID>     	UINT8           </SERVER_ID>
+	<BOOL>				UINT8			</BOOL>
+	<UTIMESP>			UINT32			</UTIMESP>
+	<ROOM_TYPE>			UINT8			</ROOM_TYPE>
+	<ROOM_ID>			UINT32			</ROOM_ID>
+	<CHAIR_ID>			UINT8			</CHAIR_ID>
+	<GAME_ID>			UINT8			</GAME_ID>
+
+	<!-- 角色信息 -->
+	<AVATAR_INFO> FIXED_DICT
+		<Properties>
+			<!-- 角色DBID -->
+			<avatarID>
+				<Type> DBID </Type>
+				<Default> 0 </Default>
+			</avatarID>
+
+			<!-- 服务器ID -->
+			<serverID>
+				<Type> SERVER_ID </Type>
+				<Default> 0 </Default>
+			</serverID>
+		</Properties>
+	</AVATAR_INFO>
+
+	<!-- 角色列表 -->
+	<AVATAR_INFO_LIST> ARRAY <of> AVATAR_INFO </of> </AVATAR_INFO_LIST>
+
+</root>

@@ -1,0 +1,65 @@
+<!-- mainHalls 主大厅实体
+	 Utype(8000-8100)
+-->
+<root>
+	<Properties>
+		<!--实体名称-->
+		<entityName>
+			<Type> UNICODE </Type>
+			<Flags> BASE </Flags>
+		</entityName>
+	</Properties>
+
+	<BaseMethods>
+		<!--通知大厅信息
+			参数1：大厅的EntityCall
+			参数2：大厅的名字
+		-->
+		<B_tellHallsInfo>
+			<Utype> 8000 </Utype>
+			<Arg> ENTITYCALL </Arg>
+			<Arg> UNICODE </Arg>
+		</B_tellHallsInfo>
+
+		<!--通知上线
+			参数1：角色的EntityCall
+			参数2：角色的DBID
+		-->
+		<B_tellOnline>
+			<Utype> 8001 </Utype>
+			<Arg> ENTITYCALL </Arg>
+			<Arg> DBID </Arg>
+		</B_tellOnline>
+
+		<!--通知离线
+			参数1：角色的EntityCall
+			参数2：角色的DBID
+		-->
+		<B_tellOffline>
+			<Utype> 8002 </Utype>
+			<Arg> ENTITYCALL </Arg>
+			<Arg> DBID </Arg>
+		</B_tellOffline>
+
+		<!--请求加入游戏大厅
+			参数1：角色的EntityCall
+			参数2：角色的DBID
+			参数3：要加入的游戏大厅名称
+		-->
+		<B_reqEnterGameHalls>
+			<Utype> 8003 </Utype>
+			<Arg> ENTITYCALL </Arg>
+			<Arg> DBID </Arg>
+			<Arg> UNICODE </Arg>
+		</B_reqEnterGameHalls>
+
+		
+	</BaseMethods>
+
+	<ClientMethods>
+	</ClientMethods>
+
+	<CellMethods>
+	</CellMethods>
+
+</root>

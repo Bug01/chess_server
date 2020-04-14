@@ -1,0 +1,80 @@
+<!-- Account 账号实体 
+	 Utype(1000-1100)
+-->
+<root>
+	<Properties>
+		<!-- 角色字典信息(serverID为key) -->
+		<avatarDict>
+			<Type> PY_DICT </Type>
+			<Flags>	BASE </Flags>
+			<Persistent> true </Persistent>
+		</avatarDict>
+
+		<!-- 最后一次登陆的服务器ID -->
+		<lastServerID>
+			<Type> SERVER_ID </Type>
+			<Flags> BASE </Flags>
+			<Persistent> true </Persistent>
+		</lastServerID>
+
+		<!-- 最后一次登陆的时间 -->
+		<lastReloginTime>
+			<Type> UTIMESP </Type>
+			<Flags> BASE </Flags>
+			<Persistent> true </Persistent>
+		</lastReloginTime>
+	</Properties>
+
+	<BaseMethods>
+		<!-- 获取角色列表 -->
+		<BExs_reqAvatarList>
+			<Exposed/>
+			<Utype> 1000 </Utype>
+		</BExs_reqAvatarList>
+
+		<!-- 请求创建角色
+			 参数1：服务器ID
+		-->
+		<BExs_reqCreateAvatar>
+			<Exposed/>
+			<Utype> 1001 </Utype>
+			<Arg> SERVER_ID </Arg>
+		</BExs_reqCreateAvatar>
+
+		<!-- 选择角色进入游戏
+			 参数1：服务器ID
+		-->
+		<BExs_reqEnterGame>
+			<Exposed/>
+			<Utype> 1002 </Utype>
+			<Arg> SERVER_ID </Arg>
+		</BExs_reqEnterGame>
+	</BaseMethods>
+
+	<ClientMethods>
+		<!-- 回复角色列表
+			 参数1：角色列表
+			 参数2：最后一次选择的服务器ID
+		-->
+		<Exs_ackAvatarList>
+			<Utype> 1050 </Utype>
+			<Arg> AVATAR_INFO_LIST </Arg>
+			<Arg> SERVER_ID </Arg>
+		</Exs_ackAvatarList>
+
+		<!-- 创建角色结果
+			 参数1：是否成功
+			 参数2：角色信息
+		-->
+		<Exs_ackCreateAvatar>
+			<Utype> 1051 </Utype>
+			<Arg> BOOL </Arg>
+			<Arg> AVATAR_INFO </Arg>
+		</Exs_ackCreateAvatar>
+
+	</ClientMethods>
+
+	<CellMethods>
+	</CellMethods>
+
+</root>

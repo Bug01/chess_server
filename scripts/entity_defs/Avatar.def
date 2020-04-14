@@ -1,0 +1,189 @@
+<!-- Avatar 角色实体 
+	 Utype(1100-1300)
+-->
+<root>
+	<Interfaces>
+		<Interface> AVGame </Interface>
+	</Interfaces>
+	
+	<Properties>
+		<!--实体ID-->
+		<avatarID>
+			<Type> DBID </Type>
+			<Flags> BASE_AND_CLIENT </Flags>
+			<Persistent> true </Persistent>
+		</avatarID>
+
+		<!--实体所在服务器ID-->
+		<serverID>
+			<Type> SERVER_ID </Type>
+			<Flags> BASE </Flags>
+			<Persistent> true </Persistent>
+		</serverID>
+
+		<!--最后登陆时间-->
+		<lastReloginTime>
+			<Type> UTIMESP </Type>
+			<Flags> BASE </Flags>
+			<Persistent> true </Persistent>
+		</lastReloginTime>
+
+		<!--玩家昵称-->
+		<nickName>
+			<Type> UNICODE </Type>
+			<Flags> BASE_AND_CLIENT </Flags>
+			<Persistent> true </Persistent>
+		</nickName>
+
+		<!--玩家头像-->
+		<avatarUrl>
+			<Type> UNICODE </Type>
+			<Flags> BASE_AND_CLIENT </Flags>
+			<Persistent> true </Persistent>
+		</avatarUrl>
+
+		<!--玩家性别 - 0:未知 1:男 2:女-->
+		<gender>
+			<Type> UINT8 </Type>
+			<Flags> BASE_AND_CLIENT </Flags>
+			<Persistent> true </Persistent>
+		</gender>
+		
+		<!--实体ID-->
+		<cellAvatrID>
+			<Type> DBID </Type>
+			<Flags> CELL_PRIVATE </Flags>
+		</cellAvatrID>
+
+		<!--房间cell的EntityCall-->
+		<cellRoom>
+			<Type> ENTITYCALL </Type>
+			<Flags> CELL_PRIVATE </Flags>
+		</cellRoom>
+
+		<!--角色昵称-->
+		<pub_nickName>
+			<Type> UNICODE </Type>
+			<Flags> ALL_CLIENTS </Flags>
+		</pub_nickName>
+
+		<!--玩家头像-->
+		<pub_avatarUrl>
+			<Type> UNICODE </Type>
+			<Flags> ALL_CLIENTS </Flags>
+		</pub_avatarUrl>
+
+		<!--玩家性别-->
+		<pub_gender>
+			<Type> UINT8 </Type>
+			<Flags> ALL_CLIENTS </Flags>
+		</pub_gender>
+
+		
+	</Properties>
+
+	<BaseMethods>
+		<!--通知加入大厅
+			参数1：大厅的EntityCall
+			参数2：大厅的名称
+		-->
+		<B_ackEnterHalls>
+			<Utype> 1100 </Utype>
+			<Arg> ENTITYCALL </Arg>
+			<Arg> UNICODE </Arg>
+		</B_ackEnterHalls>
+
+		<!--通知匹配请求结果
+			参数1：是否成功
+			参数2：相关消息
+			参数3：匹配房间类型
+		-->
+		<B_ackMatchRoom>
+			<Utype> 1101 </Utype>
+			<Arg> BOOL </Arg>
+			<Arg> UNICODE </Arg>
+			<Arg> ROOM_TYPE </Arg>
+		</B_ackMatchRoom>
+
+		<!--通知取消匹配结果
+			参数1：是否成功
+			参数2：相关消息
+		-->
+		<B_ackCancelMatch>
+			<Utype> 1102 </Utype>
+			<Arg> BOOL </Arg>
+			<Arg> UNICODE </Arg>
+		</B_ackCancelMatch>
+
+		<!--通知加入房间
+			参数1：房间空间(房间cell实体)
+			参数2：房间号
+			参数3：游戏ID
+		-->
+		<B_tellJoinRoom>
+			<Utype> 1103 </Utype>
+			<Arg> ENTITYCALL </Arg>
+			<Arg> ROOM_ID </Arg>
+			<Arg> GAME_ID </Arg>
+		</B_tellJoinRoom>
+
+		<!-- 前端接口 ....................... -->
+
+		<!--请求开始匹配游戏房间
+			参数1：房间类型
+		-->
+		<BExs_reqStartMatch>
+			<Exposed/>
+			<Utype> 1150 </Utype>
+			<Arg> ROOM_TYPE </Arg>
+		</BExs_reqStartMatch>
+
+		<!--请求取消匹配-->
+		<BExs_reqCancelMatch>
+			<Exposed/>
+			<Utype> 1151 </Utype>
+		</BExs_reqCancelMatch>
+
+	</BaseMethods>
+
+	<CellMethods>
+	</CellMethods>
+
+	<ClientMethods>
+		<!--通知当前大厅
+			参数1：大厅名称
+		-->
+		<Exs_tellCurHalls>
+			<Utype> 1300 </Utype>
+			<Arg> UNICODE </Arg>
+		</Exs_tellCurHalls>
+
+		<!--通知匹配请求结果
+			参数1：是否成功
+			参数2：相关消息
+		-->
+		<Exs_ackStartMatch>
+			<Utype> 1301 </Utype>
+			<Arg> BOOL </Arg>
+			<Arg> UNICODE </Arg>
+		</Exs_ackStartMatch>
+
+		<!--通知取消匹配结果
+			参数1：是否成功
+			参数2：相关消息
+		-->
+		<Exs_ackCancelMatch>
+			<Utype> 1302 </Utype>
+			<Arg> BOOL </Arg>
+			<Arg> UNICODE </Arg>
+		</Exs_ackCancelMatch>
+
+		<!--通知加入房间
+			参数1：游戏ID
+		-->
+		<Exs_tellJoinRoom>
+			<Utype> 1303 </Utype>
+			<Arg> GAME_ID </Arg>
+		</Exs_tellJoinRoom>
+	</ClientMethods>
+</root>

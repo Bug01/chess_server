@@ -1,0 +1,349 @@
+<root>
+	<!--
+		个性化服务端配置({assets}/res/server/kbengine.xml)
+
+		如果你需要改变引擎设置, 请在({assets}/res/server/kbengine.xml)中覆盖kbe/res/server/kbengine_defaults.xml的对应参数来修改, 
+		这样的好处是不会破坏引擎的默认设置，在你更新引擎时也不会产生冲突，以及在多个逻辑项目时不会影响到其他的项目设置。
+		详细说明请参考：http://kbengine.org/cn/docs/configuration/kbengine.html
+	-->
+	
+	<trace_packet>
+		<debug_type> 0 </debug_type>
+	</trace_packet>
+	
+	<publish>
+		<!-- 发布状态, 可在脚本中获取该值。 KBEngine.publish()
+			(apps released state, This value can be obtained in the script. KBEngine.publish())
+			Type: Integer8
+			0 : debug
+			1 : release
+			其他自定义(Other custom)
+		-->
+		<state> 0 </state>
+
+		<!-- 脚本层发布的版本号
+			(Script layer released version number)
+		 -->
+		<script_version> 0.1.0 </script_version>
+	</publish>
+
+	<interfaces>
+		<!-- 脚本入口模块， 相当于main函数 
+			(Entry module, like the main-function)
+		-->
+		<entryScriptFile> kbemain </entryScriptFile>
+		
+		<!-- interfaces的地址，多组游戏服务端可以共用一个interfaces
+			(interfaces address, multiple gameserver can share a interfaces)
+		-->
+		<host> localhost </host>
+		<port> 30099 	</port>
+	</interfaces>
+	
+	<dbmgr>
+		<!-- 脚本入口模块， 相当于main函数 
+			(Entry module, like the main-function)
+		-->
+		<entryScriptFile> kbemain </entryScriptFile>
+			
+		<!-- Interfaces进程的地址（参考interfaces中地址配置）
+			(Address of Interfaces process)
+		-->
+		<InterfacesServiceAddr>
+			<!-- 如果enable为false则相关数据不转发到Interfaces进程 
+				注意：如果为true，dbmgr认为数据将由interfaces交给第三方平台处理
+			-->
+			<enable> true </enable>
+
+			<!-- 如果为true，则自动将配置中的Interfaces地址加入到地址池，以免改动Interfaces端口需要修改多处
+			-->
+			<addDefaultAddress> true </addDefaultAddress>
+
+			<!-- 可额外的添加多个interfaces到地址池分担压力
+			<item>
+				<host>	 localhost1	</host>
+				<port>	 30098		</port>
+			</item>
+			-->
+		</InterfacesServiceAddr>
+
+		<!-- 数据库接口 
+			(database interfaces)
+		-->
+		<databaseInterfaces>
+			<!-- 数据库接口名称 （可以定义多个不同的接口，但至少存在一个default）
+				（Database interface name)
+			-->
+			<default>
+				<!-- 数据库地址 
+					（Database address)
+				-->
+				<host> localhost </host>										<!-- Type: String -->
+				<port> 0 </port>												<!-- Type: Integer -->
+
+				<!-- 数据库账号验证 
+					（Database auth)
+				-->
+				<auth>  
+					<username> bug </username>									<!-- Type: String -->
+					<password> 949629921 </password>							<!-- Type: String -->
+				</auth>
+
+				<!-- 数据库名称 
+					(Database name)
+				-->
+				<databaseName> chess </databaseName> 								<!-- Type: String -->
+			</default>
+		</databaseInterfaces>
+
+		<!-- 账号系统
+			(Account system)
+		-->
+		<account_system>
+			<!-- 账号Entity的名称
+			    (Name of AccountEntity)
+			 -->
+			<accountEntityScriptType>	Account	</accountEntityScriptType>
+			
+			<!-- 账号注册相关
+				(Account registration)
+			-->
+			<account_registration> 
+				<!-- 是否开放注册 
+					(Whether open registration)
+				-->
+				<enable>	true	</enable>
+				
+				<!-- 登录合法时游戏数据库找不到游戏账号则自动创建 
+					(When logged in, the game database can not find the game account is automatically created)
+				-->
+				<loginAutoCreate> true </loginAutoCreate>
+			</account_registration>
+		</account_system>
+	</dbmgr>
+
+	<cellapp>
+		<!-- 脚本入口模块， 相当于main函数 
+			(Entry module, like the main-function)
+		-->
+		<entryScriptFile> kbemain </entryScriptFile>
+		
+		<!-- 默认View半径, 脚本中可以改变它 
+			(Default View radius, the script can change it)
+		-->
+		<defaultViewRadius>			
+			<radius> 80.0 </radius>
+			<hysteresisArea> 5.0 </hysteresisArea>
+		</defaultViewRadius>
+	
+		<!-- 指定接口地址，可配置网卡名、MAC、IP
+			（Interface address specified, configurable NIC/MAC/IP） 
+		-->
+		<internalInterface>  </internalInterface>
+		
+		<!-- 程序的性能分析
+			（Analysis of program performance） 
+		-->
+		<profiles>
+			<!-- 如果设置为true，引擎启动时就会开始记录相关profile信息， 进程退出后将导出一份报告 
+				(if is true, Engine start is completed, start to record profile information, 
+				Process exit will export a report.)
+			-->
+			<cprofile> false </cprofile>
+			<pyprofile> false </pyprofile>
+			<eventprofile> false </eventprofile>
+			<networkprofile> false </networkprofile>
+		</profiles>
+		
+		<!-- ghost更新频率 
+			(Update frequency process)
+		-->
+		<ghostUpdateHertz> 30 </ghostUpdateHertz>		<!-- Type: Integer -->
+		
+		<!-- 是否使用坐标系统, 如果设置为false， 那么View、Trap、 Move等功能将不可用 
+			(Whether the use of coordinate-system, if is false, 
+			View, Trap, Move and other functions will not be available)
+		-->
+		<coordinate_system> 
+			<enable> true </enable>
+		</coordinate_system>	
+	</cellapp>
+	
+	<baseapp>
+		<!-- 脚本入口模块， 相当于main函数 
+			(Entry module, like the main-function)
+		-->
+		<entryScriptFile> kbemain </entryScriptFile>
+
+		<!-- 指定接口地址，可配置网卡名、MAC、IP
+			（Interface address specified, configurable NIC/MAC/IP） 
+		-->
+		<internalInterface>  </internalInterface>
+		<externalInterface>  </externalInterface>						<!-- Type: String -->
+		
+		<!-- 强制指定外部IP地址或者域名，在某些网络环境下，可能会使用端口映射的方式来访问局域网内部的KBE服务器，那么KBE在当前
+			的机器上获得的外部地址是局域网地址，此时某些功能将会不正常。例如：账号激活邮件中给出的回调地址, 登录baseapp。
+			注意：服务端并不会检查这个地址的可用性，因为无法检查。
+			(Forced to specify an external IP-address or Domain-name, In some server environment, May use the port mapping to access KBE,
+			So KBE on current machines on the external IP address may be a LAN IP address, Then some functions will not normal.
+			For example: account activation email address given callback.
+			Note: the availability of server does not check the address, because cannot check)
+		-->
+		<externalAddress>  </externalAddress>							<!-- Type: String -->
+		
+		<!-- 暴露给客户端的端口范围
+			（Exposed to the client port range） 
+		-->
+		<externalTcpPorts_min> 20015 </externalTcpPorts_min>			<!-- Type: Integer -->
+		<externalTcpPorts_max> 20019 </externalTcpPorts_max>			<!-- Type: Integer -->
+		<externalUdpPorts_min> 20005 </externalUdpPorts_min>			<!-- Type: Integer -->
+		<externalUdpPorts_max> 20009 </externalUdpPorts_max>			<!-- Type: Integer -->
+		
+		<!-- 当灾难发生后，baseapp进行灾难恢复时，每次恢复entity的数量 
+			(When after the disaster, When baseapp recovery, Each time the number of recovery entity's)
+		-->
+		<entityRestoreSize> 32 </entityRestoreSize>
+		
+		<!-- 程序的性能分析
+			（Analysis of program performance） 
+		-->
+		<profiles>
+			<!-- 如果设置为true，引擎启动时就会开始记录相关profile信息， 进程退出后将导出一份报告 
+				(if is true, Engine start is completed, start to record profile information, 
+				Process exit will export a report.)
+			-->
+			<cprofile> false </cprofile>
+			<pyprofile> false </pyprofile>
+			<eventprofile> false </eventprofile>
+			<networkprofile> false </networkprofile>
+		</profiles>
+	</baseapp>
+
+	<loginapp>
+		<!-- 脚本入口模块， 相当于main函数 
+			(Entry module, like the main-function)
+		-->
+		<entryScriptFile> kbemain </entryScriptFile>
+		
+		<!-- 指定接口地址，可配置网卡名、MAC、IP
+			（Interface address specified, configurable NIC/MAC/IP） 
+		-->
+		<internalInterface>  </internalInterface>
+		<externalInterface>  </externalInterface>						<!-- Type: String -->
+		
+		<!-- 强制指定外部IP地址或者域名，在某些网络环境下，可能会使用端口映射的方式来访问局域网内部的KBE服务器，那么KBE在当前
+			的机器上获得的外部地址是局域网地址，此时某些功能将会不正常。例如：账号激活邮件中给出的回调地址, 登录baseapp。
+			注意：服务端并不会检查这个地址的可用性，因为无法检查。
+			(Forced to specify an external IP-address or Domain-name, In some server environment, May use the port mapping to access KBE,
+			So KBE on current machines on the external IP address may be a LAN IP address, Then some functions will not normal.
+			For example: account activation email address given callback.
+			Note: the availability of server does not check the address, because cannot check)
+		-->
+		<externalAddress>  </externalAddress>							<!-- Type: String -->
+		
+		<!-- 暴露给客户端的端口范围
+			（Exposed to the client port range） 
+		-->
+		<externalTcpPorts_min> 20013 </externalTcpPorts_min>			<!-- Type: Integer -->
+		<externalTcpPorts_max> 0 </externalTcpPorts_max>				<!-- Type: Integer -->
+		<externalUdpPorts_min> -1 </externalUdpPorts_min>				<!-- Type: Integer -->
+		<externalUdpPorts_max> -1 </externalUdpPorts_max>				<!-- Type: Integer -->
+
+		<!-- 加密登录信息
+			(The encrypted user login information)
+			
+			可选择的加密方式(Optional encryption):
+				0: 无加密(No Encryption)
+				1: Blowfish
+				2: RSA (res\key\kbengine_private.key)
+		 -->
+		<encrypt_login> 2 </encrypt_login>
+		
+		
+		<!-- http回调接口，处理认证、密码重置等 
+			（注意：http_cbhost一般会被引擎替换为externalInterface或者externalAddress，仅第一个loginapp才会开启这个服务）
+			(Http-callback interface, handling authentication, password reset, etc.)
+		-->
+		<http_cbhost> localhost </http_cbhost>
+		<http_cbport> 21103 </http_cbport>
+	</loginapp>		
+	
+	<machine>
+		<!-- 暴露给客户端的端口范围
+			（Exposed to the tools port range） 
+		-->
+		<externalTcpPorts_min> 20099 </externalTcpPorts_min>			<!-- Type: Integer -->
+		<externalTcpPorts_max> 0 </externalTcpPorts_max>				<!-- Type: Integer -->
+		<externalUdpPorts_min> 0 </externalUdpPorts_min>				<!-- Type: Integer -->
+		<externalUdpPorts_max> 0 </externalUdpPorts_max>				<!-- Type: Integer -->
+
+		<!-- 服务组使用多台硬件组成网络，在某些网络环境由于路由器的设置不允许UDP广播造成跨物理机组网不成功时
+			可在此填入所有相关物理机的地址，引擎将会向具体的地址发送探测包来完成组网。
+			（When the network is composed of a plurality of hardware, the specific network address is detected.） 
+		-->
+		<addresses>
+			<!--<item> 127.0.0.1 </item>-->
+			<!--<item> 192.168.10.18 </item>-->
+		</addresses>
+	</machine>
+
+	<bots>
+		<!-- 脚本入口模块， 相当于main函数 
+			(Entry module, like the main-function)
+		-->
+		<entryScriptFile> kbemain </entryScriptFile>
+			
+		<!-- 指定接口地址，可配置网卡名、MAC、IP
+			（Interface address specified, configurable NIC/MAC/IP） 
+		-->
+		<internalInterface>  </internalInterface>
+		
+		<!-- 对应baseapp的externalAddress的解决方案，当externalAddress强制下发公网IP提供登陆时，
+			如果局域网内部使用机器人测试也走公网IP和流量可能会不合适，此时可以设置为true，登陆时强制直接使用内网环境。
+			Corresponding to baseapp->externalAddress solution, when externalAddress mandatory release of the public network to provide landing IP,
+			If the use of robot within the LAN test also take the public network IP and traffic may be inappropriate, can be set to true, 
+			when landing forced to use the internal network environment. -->
+		<forceInternalLogin> false </forceInternalLogin>
+		
+		<!-- loginapp地址 
+			（loginapp address)
+		-->
+		<host> localhost </host>										<!-- Type: String -->
+		<port_min> 20013 </port_min>									<!-- Type: Integer -->
+		<port_max> 0 </port_max>										<!-- Type: Integer -->
+		
+		<!-- 在Entity初始化时是否触发属性的set_*事件 -->
+		<isOnInitCallPropertysSetMethods> true </isOnInitCallPropertysSetMethods>
+		
+		<!-- 默认启动进程后自动添加这么多个机器人 
+			(After starting the process, automatically add some robots)
+			totalCount	： 添加总数量			(Add the total-number)
+			tickTime	： 每次添加所用时间(s)	(Interval time-secs)
+			tickCount	： 每次添加数量			(Each time you add the number of)
+		-->
+		<defaultAddBots> 
+			<totalCount> 10  </totalCount>								<!-- Type: Integer -->
+			<tickTime> 0.1  </tickTime>									<!-- Type: Float -->
+			<tickCount> 5  </tickCount>									<!-- Type: Integer -->
+		</defaultAddBots>
+		
+		<!-- 机器人账号相关 
+			(about bots-accounts)
+		-->
+		<account_infos>
+			<!-- 机器人账号名称的前缀 
+				(The account name prefix)
+			-->
+			<account_name_prefix> bot_ </account_name_prefix>
+			
+			<!-- 机器人账号名称的后缀递增, 0使用随机数递增， 否则按照填写的数递增 
+				注意：想让机器人每次登陆使用相同的账号请设置固定的bots程序启动时的cid参数，具体参考服务器启动脚本，机器人账号由"前缀+cid+后缀组成"。
+				(The account name suffix, 0 is the use of random number, Otherwise, use account_name_suffix_inc and increasing.)
+			-->
+			<account_name_suffix_inc> 0 </account_name_suffix_inc><!-- Type: Integer -->
+
+			<account_password> pwd123456 </account_password>
+		</account_infos>
+		
+	</bots>
+</root>

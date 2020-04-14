@@ -1,0 +1,52 @@
+<!-- matchServer 匹配服务实体
+	 Utype(8100-8200)
+-->
+<root>
+	<Properties>
+		<!--房间类型-->
+		<roomType>
+			<Type> ROOM_TYPE </Type>
+			<Default> 0 </Default>
+			<Flags> BASE </Flags>
+		</roomType>
+
+		<!--所属大厅-->
+		<masterHalls>
+			<Type> ENTITYCALL </Type>
+			<Flags> BASE </Flags>
+		</masterHalls>
+	</Properties>
+
+	<BaseMethods>
+		<!--请求匹配房间
+			参数1：角色EntityCall
+			参数2：角色DBID
+			参数3：角色的匹配信息
+		-->
+		<B_reqStartMatch>
+			<Utype> 8100 </Utype>
+			<Arg> ENTITYCALL </Arg>
+			<Arg> DBID </Arg>
+			<Arg> PY_DICT </Arg>
+		</B_reqStartMatch>
+
+		<!--请求取消匹配房间
+			参数1：角色EntityCall
+			参数2：角色DBID
+		-->
+		<B_reqCancelMatch>
+			<Utype> 8101 </Utype>
+			<Arg> ENTITYCALL </Arg>
+			<Arg> DBID </Arg>
+		</B_reqCancelMatch>
+
+		
+	</BaseMethods>
+
+	<ClientMethods>
+	</ClientMethods>
+
+	<CellMethods>
+	</CellMethods>
+
+</root>

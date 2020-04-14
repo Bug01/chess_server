@@ -1,0 +1,21 @@
+<!-- gobangRoom 房间实体
+	 Utype(9100-9200)
+-->
+<root>
+	<Interfaces>
+		<Interface> room </Interface>
+	</Interfaces>
+
+	<Properties>
+	</Properties>
+
+	<BaseMethods>
+	</BaseMethods>
+
+	<ClientMethods>
+	</ClientMethods>
+
+	<CellMethods>
+	</CellMethods>
+
+</root>

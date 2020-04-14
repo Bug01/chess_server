@@ -1,0 +1,78 @@
+<!-- halls 大厅基类
+	 Utype(7000-7100)
+-->
+<root>
+	<Properties>
+		<!--大厅名称-->
+		<hallsName>
+			<Type> UNICODE </Type>
+			<Flags> BASE </Flags>
+		</hallsName>
+	</Properties>
+
+	<BaseMethods>
+		<!--通知匹配服务实体
+			参数1：匹配服务EntityCall
+			参数2：匹配服务类型
+		-->
+		<B_tellMatchServer>
+			<Utype> 7000 </Utype>
+			<Arg> ENTITYCALL </Arg>
+			<Arg> UINT8 </Arg>
+		</B_tellMatchServer>
+
+		<!--请求加入游戏大厅
+			参数1：角色的EntityCall
+			参数2：角色的DBID
+		-->
+		<B_reqEnterHalls>
+			<Utype> 7001 </Utype>
+			<Arg> ENTITYCALL </Arg>
+			<Arg> DBID </Arg>
+		</B_reqEnterHalls>
+
+		<!--请求匹配房间
+			参数1：角色EntityCall
+			参数2：角色DBID
+			参数3：房间类型
+			参数4：角色的匹配信息
+		-->
+		<B_reqMatchRoom>
+			<Utype> 7002 </Utype>
+			<Arg> ENTITYCALL </Arg>
+			<Arg> DBID </Arg>
+			<Arg> ROOM_TYPE </Arg>
+			<Arg> PY_DICT </Arg>
+		</B_reqMatchRoom>
+
+		<!--请求取消匹配
+			参数1：角色EntityCall
+			参数2：角色DBID
+			参数3：房间类型
+		-->
+		<B_reqCancelMatch>
+			<Utype> 7003 </Utype>
+			<Arg> ENTITYCALL </Arg>
+			<Arg> DBID </Arg>
+			<Arg> ROOM_TYPE </Arg>
+		</B_reqCancelMatch>
+
+		<!--通知匹配结果
+			参数1：匹配类型
+			参数2：匹配结果
+		-->
+		<B_tellMatchResult>
+			<Utype> 7004 </Utype>
+			<Arg> ROOM_TYPE </Arg>
+			<Arg> PY_LIST </Arg>
+		</B_tellMatchResult>
+
+	</BaseMethods>
+
+	<ClientMethods>
+	</ClientMethods>
+
+	<CellMethods>
+	</CellMethods>
+
+</root>

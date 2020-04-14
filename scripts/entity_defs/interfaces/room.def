@@ -1,0 +1,88 @@
+<!-- room 大厅基类
+	 Utype(9000-9100)
+-->
+<root>
+	<Properties>
+		<!--所属大厅-->
+		<masterHalls>
+			<Type> ENTITYCALL </Type>
+			<Flags> BASE </Flags>
+		</masterHalls>
+
+		<!--所属大厅名称-->
+		<masterHallsName>
+			<Type> UNICODE </Type>
+			<Flags> BASE </Flags>
+		</masterHallsName>
+
+		<!--房间ID-->
+		<roomID>
+			<Type> ROOM_ID </Type>
+			<Flags> BASE </Flags>
+		</roomID>
+
+		<!--房间类型-->
+		<roomType>
+			<Type> ROOM_TYPE </Type>
+			<Flags> BASE </Flags>
+		</roomType>
+
+		<!--房间名称-->
+		<roomName>
+			<Type> UNICODE </Type>
+			<Flags> BASE </Flags>
+		</roomName>
+
+		<!--游戏ID-->
+		<gameID>
+			<Type> GAME_ID </Type>
+			<Flags> BASE </Flags>
+		</gameID>
+
+		<!--游戏人数-->
+		<maxPlayerCount>
+			<Type> CHAIR_ID </Type>
+			<Flags> BASE </Flags>
+		</maxPlayerCount>
+
+		<!--房间内玩家-->
+		<playerList>
+			<Type> PY_LIST </Type>
+			<Flags> BASE </Flags>
+		</playerList>
+
+		<!--房间ID-->
+		<cellRoomID>
+			<Type> ROOM_ID </Type>
+			<Flags> CELL_PRIVATE </Flags>
+		</cellRoomID>
+
+		<!--房间名称-->
+		<cellRoomName>
+			<Type> UNICODE </Type>
+			<Flags> CELL_PRIVATE </Flags>
+		</cellRoomName>
+
+		<!--游戏人数-->
+		<cellMaxPlayerCount>
+			<Type> CHAIR_ID </Type>
+			<Flags> CELL_PRIVATE </Flags>
+		</cellMaxPlayerCount>
+
+		<!--游戏ID-->
+		<cellGameID>
+			<Type> GAME_ID </Type>
+			<Flags> CELL_PRIVATE </Flags>
+		</cellGameID>
+	</Properties>
+
+	<BaseMethods>
+	</BaseMethods>
+
+	<ClientMethods>
+	</ClientMethods>
+
+	<CellMethods>
+	</CellMethods>
+
+</root>

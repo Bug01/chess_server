@@ -1,0 +1,21 @@
+<!-- gobangHalls 大厅实体
+	 Utype(7200-7300)
+-->
+<root>
+	<Interfaces>
+		<Interface> halls </Interface>
+	</Interfaces>
+
+	<Properties>
+	</Properties>
+
+	<BaseMethods>
+	</BaseMethods>
+
+	<ClientMethods>
+	</ClientMethods>
+
+	<CellMethods>
+	</CellMethods>
+
+</root>
