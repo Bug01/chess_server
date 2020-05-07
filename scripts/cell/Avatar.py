@@ -3,7 +3,8 @@ import KBEngine
 from KBEDebug import *
 from AVGame import AVGame
 
-class Avatar(KBEngine.Entity, AVGame):
+
+class Avatar(KBEngine.Entity, AVGame, ):
     def __init__(self):
         KBEngine.Entity.__init__(self)
         AVGame.__init__(self)

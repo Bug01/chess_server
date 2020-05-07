@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 from KBEDebug import *
+from AVGobang import AVGobang
 
-class AVGame:
+class AVGame(AVGobang):
     def __init__(self):
+        AVGobang.__init__(self)
         
         # 角色的座位号
         self.pub_chairID = 0
@@ -82,14 +84,6 @@ class AVGame:
         # 通知准备游戏
         self.cellRoom.reqReady(self.cellAvatrID, self)
 
-    def CExs_reqChess(self, pos_x, pos_y):
-        """
-        通知下子
-        参数1：下子位置x
-        参数2：下子位置y
-        """
-        # 通知准备游戏
-        self.cellRoom.reqChess(self.cellAvatrID, self, pos_x, pos_y)
 
 
 

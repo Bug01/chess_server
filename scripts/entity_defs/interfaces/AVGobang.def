@@ -1,0 +1,104 @@
+<!-- 角色五子棋接口 AVGobang
+	 Utype(1500-1600)
+-->
+<root>
+	<Properties>
+	</Properties>
+
+	<BaseMethods>
+	</BaseMethods>
+
+	<CellMethods>
+		<!--通知下子
+			参数1：下子位置x
+			参数2：下子位置y
+		-->
+		<CExs_reqChess>
+			<Exposed/>
+			<Utype> 1500 </Utype>
+			<Arg> UINT8 </Arg>
+			<Arg> UINT8 </Arg>
+		</CExs_reqChess>
+
+		<!--请求和棋
+        	参数1：是否同意和棋
+		-->
+		<CExs_reqDraw>
+			<Exposed/>
+			<Utype> 1501 </Utype>
+			<Arg> BOOL </Arg>
+		</CExs_reqDraw>
+
+		<!--请求悔棋
+        	参数1：悔棋类型 
+					1：请求悔棋
+					2：同意悔棋
+					3：不同意悔棋
+		-->
+		<CExs_reqBackChess>
+			<Exposed/>
+			<Utype> 1502 </Utype>
+			<Arg> UINT8 </Arg>
+		</CExs_reqBackChess>
+	</CellMethods>
+
+	<ClientMethods>
+		<!--通知开始游戏-->
+		<Exs_onStartGame>
+			<Utype> 1550 </Utype>
+		</Exs_onStartGame>
+
+		<!--通知当前操作玩家
+			参数1：当然玩家座位号
+		-->
+		<Exs_tellCurPlayer>
+			<Utype> 1551 </Utype>
+			<Arg> CHAIR_ID </Arg>
+		</Exs_tellCurPlayer>
+
+		<!--通知玩家下子
+			参数1：下子玩家座位号
+			参数2：下子位置x
+			参数2：下子位置y
+		-->
+		<Exs_tellPlayerChess>
+			<Utype> 1552 </Utype>
+			<Arg> CHAIR_ID </Arg>
+			<Arg> UINT8 </Arg>
+			<Arg> UINT8 </Arg>
+		</Exs_tellPlayerChess>
+
+		<!--通知角色和棋
+			参数1：和棋玩家位置
+			参数2：是否和棋
+		-->
+		<Exs_tellPlayerDraw>
+			<Utype> 1553 </Utype>
+			<Arg> CHAIR_ID </Arg>
+			<Arg> BOOL </Arg>
+		</Exs_tellPlayerDraw>
+
+		<!--通知悔棋
+			参数1：悔棋位置
+			参数2：悔棋类型
+					1：请求悔棋
+					2：同意悔棋
+					3：不同意悔棋
+		-->
+		<Exs_tellBackChess>
+			<Utype> 1554 </Utype>
+			<Arg> CHAIR_ID </Arg>
+			<Arg> UINT8 </Arg>
+		</Exs_tellBackChess>
+
+		<!--通知游戏结束
+			参数1：赢家位置
+		-->
+		<Exs_onEndGame>
+			<Utype> 1555 </Utype>
+			<Arg> CHAIR_ID </Arg>
+		</Exs_onEndGame>
+
+	</ClientMethods>
+
+</root>

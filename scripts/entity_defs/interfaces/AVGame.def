@@ -1,7 +1,11 @@
 <!-- 角色游戏接口 AVGame
-	 Utype(1400-1600)
+	 Utype(1400-1500)
 -->
 <root>
+	<Interfaces>
+		<Interface> AVGobang </Interface>
+	</Interfaces>
+
 	<Properties>
 		<!--角色的座位号-->
 		<pub_chairID>
@@ -37,65 +41,20 @@
 			<Arg> BOOL </Arg>
 		</C_tellOnlineStatus>
 
-
-
 		<!--通知加载完成-->
 		<CExs_reqLoadDone>
 			<Exposed/>
-			<Utype> 1450 </Utype>
+			<Utype> 1410 </Utype>
 		</CExs_reqLoadDone>
 
 		<!--通知准备游戏-->
 		<CExs_reqReady>
 			<Exposed/>
-			<Utype> 1451 </Utype>
+			<Utype> 1411 </Utype>
 		</CExs_reqReady>
-
-		<!--通知下子
-			参数1：下子位置x
-			参数2：下子位置y
-		-->
-		<CExs_reqChess>
-			<Exposed/>
-			<Utype> 1452 </Utype>
-			<Arg> UINT8 </Arg>
-			<Arg> UINT8 </Arg>
-		</CExs_reqChess>
 	</CellMethods>
 
 	<ClientMethods>
-		<!--通知开始游戏-->
-		<Exs_onStartGame>
-			<Utype> 1500 </Utype>
-		</Exs_onStartGame>
-
-		<!--通知当前操作玩家
-			参数1：当然玩家座位号
-		-->
-		<Exs_tellCurPlayer>
-			<Utype> 1501 </Utype>
-			<Arg> CHAIR_ID </Arg>
-		</Exs_tellCurPlayer>
-
-		<!--通知玩家下子
-			参数1：下子玩家座位号
-			参数2：下子位置x
-			参数2：下子位置y
-		-->
-		<Exs_tellPlayerChess>
-			<Utype> 1502 </Utype>
-			<Arg> CHAIR_ID </Arg>
-			<Arg> UINT8 </Arg>
-			<Arg> UINT8 </Arg>
-		</Exs_tellPlayerChess>
-
-		<!--通知游戏结束
-			参数1：赢家位置
-		-->
-		<Exs_onEndGame>
-			<Utype> 1503 </Utype>
-			<Arg> CHAIR_ID </Arg>
-		</Exs_onEndGame>
 	</ClientMethods>
 
 </root>
