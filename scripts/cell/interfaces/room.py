@@ -85,7 +85,7 @@ class room(KBEngine.Entity):
             self.delTimer(self.timerID)
             self.timerID = 0
 
-    def onTimeout():
+    def onTimeout(self):
         """
         """
         pass

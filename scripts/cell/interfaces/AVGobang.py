@@ -45,22 +45,38 @@ class AVGobang:
         # 通知准备游戏
         self.cellRoom.reqChess(self.cellAvatrID, self, pos_x, pos_y)
 
-    def CExs_reqDraw(self, bCanEnd):
-        """
-        请求和棋
-        参数1：是否同意和棋
-        """
-        self.cellRoom.reqDraw(self.cellAvatrID, self, bCanEnd)
 
-    def CExs_reqBackChess(self, backType):
+    def CExs_reqConsent(self, tp):
         """
-        请求悔棋
-        参数1：悔棋类型 
-                1：请求悔棋
-                2：同意悔棋
-                3：不同意悔棋
+        请求对方同意
+        参数1：请求类型
+                1：和棋
+                2：悔棋
         """
-        self.cellRoom.reqBackChess(self.cellAvatrID, self, backType)
+        # 请求和棋
+        if tp == 1:
+            self.cellRoom.reqDraw(self.cellAvatrID, self, tp)
+        # 请求悔棋
+        elif tp == 2:
+            self.cellRoom.reqBackChess(self.cellAvatrID, self, tp)
 
+    def CExs_reqConsentBack(self, tp, bAgree):
+        """
+        请求回应对方是否同意
+        参数1：回应类型
+                1：和棋
+                2：悔棋
+        参数2：是否同意
+        """
+        # 请求和棋
+        if tp == 1:
+            self.cellRoom.reqDrawBack(self.cellAvatrID, self, tp, bAgree)
+        # 请求悔棋
+        elif tp == 2:
+            self.cellRoom.reqBackChessBack(self.cellAvatrID, self, tp, bAgree)
 
-
+    def CExs_reqLose(self):
+        """
+        请求认输
+        """
+        self.cellRoom.reqLose(self.cellAvatrID, self)

@@ -20,26 +20,34 @@
 			<Arg> UINT8 </Arg>
 		</CExs_reqChess>
 
-		<!--请求和棋
-        	参数1：是否同意和棋
+		<!--请求对方同意
+        	参数1：请求类型
+					1：和棋
+					2：悔棋
 		-->
-		<CExs_reqDraw>
+		<CExs_reqConsent>
 			<Exposed/>
 			<Utype> 1501 </Utype>
-			<Arg> BOOL </Arg>
-		</CExs_reqDraw>
+			<Arg> UINT8 </Arg>
+		</CExs_reqConsent>
 
-		<!--请求悔棋
-        	参数1：悔棋类型 
-					1：请求悔棋
-					2：同意悔棋
-					3：不同意悔棋
+		<!--请求回应对方是否同意
+        	参数1：请求类型
+					1：和棋
+					2：悔棋
+			参数2：是否同意
 		-->
-		<CExs_reqBackChess>
+		<CExs_reqConsentBack>
 			<Exposed/>
 			<Utype> 1502 </Utype>
 			<Arg> UINT8 </Arg>
-		</CExs_reqBackChess>
+			<Arg> BOOL </Arg>
+		</CExs_reqConsentBack>
+
+		<!--请求认输-->
+		<CExs_reqLose>
+			<Exposed/>
+		</CExs_reqLose>
 	</CellMethods>
 
 	<ClientMethods>
@@ -49,10 +57,12 @@
 		</Exs_onStartGame>
 
 		<!--通知当前操作玩家
-			参数1：当然玩家座位号
+			参数1：当前回合
+			参数2：当然玩家座位号
 		-->
 		<Exs_tellCurPlayer>
 			<Utype> 1551 </Utype>
+			<Arg> UINT16 </Arg>
 			<Arg> CHAIR_ID </Arg>
 		</Exs_tellCurPlayer>
 
@@ -68,28 +78,32 @@
 			<Arg> UINT8 </Arg>
 		</Exs_tellPlayerChess>
 
-		<!--通知角色和棋
-			参数1：和棋玩家位置
-			参数2：是否和棋
+		<!--通知角色请求同意
+			参数1：请求的玩家位置
+			参数2：请求类型
+					1：和棋
+					2：悔棋
 		-->
-		<Exs_tellPlayerDraw>
+		<Exs_tellPlayerConsent>
 			<Utype> 1553 </Utype>
 			<Arg> CHAIR_ID </Arg>
-			<Arg> BOOL </Arg>
-		</Exs_tellPlayerDraw>
+			<Arg> UINT8 </Arg>
+		</Exs_tellPlayerConsent>
 
-		<!--通知悔棋
-			参数1：悔棋位置
-			参数2：悔棋类型
-					1：请求悔棋
-					2：同意悔棋
-					3：不同意悔棋
+		<!--通知角色回应请求同意
+			参数1：回应的玩家位置
+			参数2：回应类型
+					1：和棋
+					2：悔棋
+			参数3：是否同意
 		-->
-		<Exs_tellBackChess>
+		<Exs_tellPlayerConsentBack>
 			<Utype> 1554 </Utype>
 			<Arg> CHAIR_ID </Arg>
 			<Arg> UINT8 </Arg>
-		</Exs_tellBackChess>
+			<Arg> BOOL </Arg>
+		</Exs_tellPlayerConsentBack>
+
 
 		<!--通知游戏结束
 			参数1：赢家位置
