@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 from KBEDebug import *
+import GDefine
 
 class AVGobang:
     def __init__(self):
         
         # 最后一步落子位置
-        self.lastPos_x = 0
-        self.lastPos_y = 0
+        self.lastPos_x = GDefine.GC_ERROR_POS
+        self.lastPos_y = GDefine.GC_ERROR_POS
 
     # ---------------------------------------------------
     # 		KBEngine method
@@ -26,8 +27,8 @@ class AVGobang:
         self.lastPos_y = y
     
     def clearLastChess(self):
-        self.lastPos_x = 0
-        self.lastPos_y = 0
+        self.lastPos_x = GDefine.GC_ERROR_POS
+        self.lastPos_y = GDefine.GC_ERROR_POS
     
     # ---------------------------------------------------
     # 		cell 接口

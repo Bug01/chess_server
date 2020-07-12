@@ -50,3 +50,6 @@ GC_RoomStatus = {
     'game'		: 1,		# 游戏中
     'end'		: 2,		# 游戏结束
 }
+
+# 五子棋错误的位置
+GC_ERROR_POS = 255

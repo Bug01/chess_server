@@ -69,7 +69,7 @@
 		<!--通知玩家下子
 			参数1：下子玩家座位号
 			参数2：下子位置x
-			参数2：下子位置y
+			参数3：下子位置y
 		-->
 		<Exs_tellPlayerChess>
 			<Utype> 1552 </Utype>
@@ -104,12 +104,25 @@
 			<Arg> BOOL </Arg>
 		</Exs_tellPlayerConsentBack>
 
+		<!--通知角色撤销下棋
+			参数1：下子位置x
+			参数2：下子位置y
+			参数3：当前最后落子x
+        	参数4：当前最后落子y
+		-->
+		<Exs_tellPlayerBackChess>
+			<Utype> 1555 </Utype>
+			<Arg> UINT8 </Arg>
+			<Arg> UINT8 </Arg>
+			<Arg> UINT8 </Arg>
+			<Arg> UINT8 </Arg>
+		</Exs_tellPlayerBackChess>
 
 		<!--通知游戏结束
 			参数1：赢家位置
 		-->
 		<Exs_onEndGame>
-			<Utype> 1555 </Utype>
+			<Utype> 1556 </Utype>
 			<Arg> CHAIR_ID </Arg>
 		</Exs_onEndGame>
 

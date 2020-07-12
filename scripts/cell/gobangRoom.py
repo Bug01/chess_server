@@ -2,6 +2,7 @@
 import KBEngine
 from KBEDebug import *
 from room import room
+import GDefine
 
 class gobangRoom(room):
     def __init__(self):
@@ -84,6 +85,17 @@ class gobangRoom(room):
             if av.getOnline():
                 av.base.client.Exs_tellPlayerConsentBack(chairID, tp, bAgree)
 
+    def _tellAllAVBackChess(self, back_x, back_y, last_x, last_y):
+        """
+        通知撤销下棋
+        参数1：撤回位置x
+        参数2：撤回位置y
+        参数3：当前最后落子x
+        参数4：当前最后落子y
+        """
+        for av in self.cellAvatars.values():
+            if av.getOnline():
+                av.base.client.Exs_tellPlayerBackChess(back_x, back_y, last_x, last_y)
 
     def _tellAllAVEnd(self, winPos):
         """
@@ -334,6 +346,12 @@ class gobangRoom(room):
             ERROR_MSG("%s(%i)reqBackChess:reqDBID(%i) but not in game." % (self.cellRoomName, self.cellRoomID, reqDBID))
             return
 
+        # 存在最后落子位置
+        if reqCellEnMB.lastPos_x == GDefine.GC_ERROR_POS or \
+            reqCellEnMB.lastPos_y == GDefine.GC_ERROR_POS:
+            ERROR_MSG("%s(%i)reqBackChess:reqDBID(%i) but lastPos is err." % (self.cellRoomName, self.cellRoomID, reqDBID))
+            return
+
         # 当前轮我操作 不能申请
         if self.curChairID == reqCellEnMB.getChairID():
             ERROR_MSG("%s(%i)reqBackChess:reqDBID(%i) but curChairID is me." % (self.cellRoomName, self.cellRoomID, reqDBID))
@@ -377,14 +395,18 @@ class gobangRoom(room):
         # 同意悔棋
         if bAgree:
             # 撤回落子
-            lastAV = self.curChairID % self.cellMaxPlayerCount + 1
+            lastPos = self.curChairID % self.cellMaxPlayerCount + 1
+            lastAV = self.getAVByChairID(lastPos)
             self.table[lastAV.lastPos_x][lastAV.lastPos_y] = 0
             self.freeCount += 1
-            lastAV.clearLastChess()
-            
-            # 通知撤回落子
-            # .......
 
+            # 通知撤回落子
+            self._tellAllAVBackChess(lastAV.lastPos_x, lastAV.lastPos_y, reqCellEnMB.lastPos_x, reqCellEnMB.lastPos_y)
+
+            # 清理最后落子 同时同意悔棋的玩家不能接着悔棋
+            lastAV.clearLastChess()
+            reqCellEnMB.clearLastChess()
+            
             # 继续游戏
             self.onRound()
         # 拒绝悔棋
@@ -403,10 +425,8 @@ class gobangRoom(room):
             return
 
         # 游戏结束
-        for dbid in self.cellAvatars:
-            if dbid != reqDBID:
-                self.onEndGame(dbid)    
-                return
+        winPos = reqCellEnMB.getChairID() % self.cellMaxPlayerCount + 1
+        self.onEndGame(winPos)
 
     def onEndGame(self, winPos):
         """
